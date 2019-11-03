@@ -1,0 +1,15 @@
+{
+    "editor.tabSize": 2,
+    "files.eol": "\n",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "files.exclude": {
+      ".git": true,
+      "server/node_modules": true,
+      "server/dist": true,
+      "client/node_modules": true
+    },
+    "editor.detectIndentation": false,
+    "files.trimTrailingWhitespace": true
+  }
