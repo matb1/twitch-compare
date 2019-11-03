@@ -13,6 +13,10 @@
         true,
         175
       ],
+      "interface-name": [
+        false,
+        "always-prefix"
+      ],
       "no-var-requires": false,
       "no-console": false,
       "member-ordering": [

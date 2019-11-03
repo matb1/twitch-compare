@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Compares number of viewers for Twitch streams in real-time.",
   "scripts": {
+    "start": "node dist/index.js",
     "test": "node dist/unit-test-launcher.js",
     "clean": "rm -rf dist/*",
     "build": "npm run clean && tslint -p tsconfig.json -t verbose && tsc && npm run --silent test"
@@ -19,11 +20,13 @@
   "homepage": "https://github.com/matb1/twitch-compare#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "needle": "^2.4.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
     "@types/jasmine": "^3.4.5",
+    "@types/needle": "^2.0.4",
     "@types/node": "^12.12.5",
     "@types/socket.io": "^2.1.4",
     "jasmine": "^3.5.0",
