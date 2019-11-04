@@ -1,11 +1,12 @@
 import * as express from 'express';
 import * as http from 'http';
+import { container } from './inversify.config';
+import { WebApi, WebApiToken } from './web-api';
 
 const app: express.Express = express();
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello world</h1>');
-});
+const webApi: WebApi = container.get<WebApi>(WebApiToken);
+webApi.installRoutes(app);
 
 const server: http.Server = http.createServer(app);
 

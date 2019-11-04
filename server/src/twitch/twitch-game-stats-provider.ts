@@ -1,16 +1,21 @@
 import { HttpClient, HttpOptions, HttpResponse } from './../http-client/http-client';
+import { NeedleHttpClientToken } from './../http-client/needle-http-client';
+import { inject, injectable } from './../inversify.decorators';
 import { GameStats, GameStatsProvider } from './game-stats-provider';
+
+export const TwitchGameStatsProviderToken = Symbol('TwitchGameStatsProvider');
 
 export interface TwitchStreamsResponse {
   data: Array<{ game_id: string, viewer_count: number }>;
   pagination: { cursor: string };
 }
 
+@injectable()
 export class TwitchGameStatsProvider implements GameStatsProvider {
 
   private readonly url: string = 'https://api.twitch.tv/helix/streams';
 
-  constructor(private http: HttpClient) {
+  constructor(@inject(NeedleHttpClientToken) private http: HttpClient) {
   }
 
   public async get(gameIds: string[]): Promise<GameStats[]> {
