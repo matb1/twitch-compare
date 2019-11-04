@@ -8,7 +8,8 @@
       ".git": true,
       "server/node_modules": true,
       "server/dist": true,
-      "client/node_modules": true
+      "client/node_modules": true,
+      "client/dist": true
     },
     "editor.detectIndentation": false,
     "files.trimTrailingWhitespace": true
