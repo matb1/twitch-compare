@@ -4,9 +4,10 @@
   "description": "Compares number of viewers for Twitch streams in real-time.",
   "scripts": {
     "start": "node dist/index.js",
-    "test": "node dist/unit-test-launcher.js",
     "clean": "rm -rf dist/*",
-    "build": "npm run clean && tslint -p tsconfig.json -t verbose && tsc && npm run --silent test"
+    "build": "npm run clean && tslint -p tsconfig.json -t verbose && tsc",
+    "test": "node dist/unit-test-launcher.js",
+    "build_test": "npm run --silent build && npm run --silent test"
   },
   "repository": {
     "type": "git",
