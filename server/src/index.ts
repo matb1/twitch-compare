@@ -4,11 +4,10 @@ import { container } from './inversify.config';
 import { WebApi, WebApiToken } from './web-api';
 
 const app: express.Express = express();
+const server: http.Server = http.createServer(app);
 
 const webApi: WebApi = container.get<WebApi>(WebApiToken);
-webApi.installRoutes(app);
-
-const server: http.Server = http.createServer(app);
+webApi.installRoutes(server, app);
 
 server.listen(8080, () => {
   console.log('Listening on port 8080.');
