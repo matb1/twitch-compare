@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-game-stats-cards',
-  templateUrl: './game-stats-cards.component.html'
+  templateUrl: './game-stats-cards.component.html',
+  styleUrls: ['./game-stats-cards.component.scss']
 })
 export class GameStatsCardsComponent {
   public r6Title: string = `Tom Clancy's Rainbow Six: Siege`;
