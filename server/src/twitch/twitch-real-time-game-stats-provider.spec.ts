@@ -24,11 +24,11 @@ describe('The TwitchRealTimeGameStatsProvider', () => {
 
   describe('on a call to start()', () => {
 
-    it('starts a periodic timer configured to periods of 10 seconds.', () => {
+    it('starts a periodic timer configured to periods of 4 seconds.', () => {
       runStart();
 
       expect(mockTimer.startCallCount).toEqual(1);
-      expect(mockTimer.startRecordedParameter.timeout).toEqual(10000);
+      expect(mockTimer.startRecordedParameter.timeout).toEqual(4000);
     });
 
     it('does nothing when already started.', () => {

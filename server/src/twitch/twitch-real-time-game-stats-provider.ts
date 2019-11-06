@@ -30,8 +30,8 @@ export class TwitchRealTimeGameStatsProvider implements RealTimeGameStatsProvide
     this.timer = this.timerFactory.periodic();
     this.callback = callback;
 
-    // Poll stats every 10 seconds
-    this.timer.start(10000, () => {
+    // Poll stats every 4 seconds
+    this.timer.start(4000, () => {
       this.fetchStatsAndNotify();
     });
 
