@@ -1,23 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { GameStatsService } from './game-stats.service';
+import { Subscription } from 'rxjs';
+import { GameStats, GameId, GameDatabase } from './game-stats';
+
+interface GameMetadata {
+  title: string;
+  subtitle: string;
+  link: string;
+  viewerCount: number;
+}
 
 @Component({
   selector: 'app-game-stats-cards',
   templateUrl: './game-stats-cards.component.html',
   styleUrls: ['./game-stats-cards.component.scss']
 })
-export class GameStatsCardsComponent {
-  public r6Title: string = `Tom Clancy's Rainbow Six: Siege`;
-  public r6Subtitle: string = 'Ubisoft';
-  public r6ViewerCount: number = 1435;
-  public r6Link: string = `https://www.twitch.tv/directory/game/Tom%20Clancy's%20Rainbow%20Six%3A%20Siege`;
+export class GameStatsCardsComponent implements OnInit, OnDestroy {
 
-  public f5Title: string = 'Far Cry 5';
-  public f5Subtitle: string = 'Ubisoft';
-  public f5ViewerCount: number = 15;
-  public f5Link: string = `https://www.twitch.tv/directory/game/Far%20Cry%205`;
+  public gameMetadataList: GameMetadata[] = [];
+  private subscription: Subscription;
 
-  public acTitle: string = `Assassin's Creed Odyssey`;
-  public acSubtitle: string = 'Ubisoft';
-  public acViewerCount: number = 143;
-  public acLink: string = `https://www.twitch.tv/directory/game/Assassin's%20Creed%20Odyssey`;
+  constructor(private gameStatsService: GameStatsService) {
+  }
+
+  public ngOnInit(): void {
+    this.subscription = this.gameStatsService.stats$.subscribe((stats: GameStats[]) => this.process(stats));
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  private process(statsList: GameStats[]): void {
+    this.gameMetadataList = [];
+
+    const gameIds = [GameId.RainbowSixSiege, GameId.FarCry5, GameId.AssassinsCreedOdyssey];
+
+    for (const gameId of gameIds) {
+      const stats = statsList.find((s) => s.gameId === gameId);
+      this.gameMetadataList.push({
+        title: GameDatabase[gameId].title,
+        subtitle: GameDatabase[gameId].dev,
+        link: GameDatabase[gameId].link,
+        viewerCount: (stats && stats.viewerCount) || 0
+      });
+    }
+  }
 }

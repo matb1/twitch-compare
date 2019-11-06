@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { SocketIoModule } from 'ngx-socket-io';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    SocketIoModule.forRoot({ url: '' })
   ],
   providers: [],
   bootstrap: [AppComponent]

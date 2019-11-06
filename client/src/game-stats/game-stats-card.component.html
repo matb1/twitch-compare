@@ -4,11 +4,8 @@
     <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <p style="text-align: center;">
-      {{ viewerCount + ' ' + (viewerCount > 1 ? 'viewers' : 'viewer') }}
-    </p>
+    <div style="text-align: center;">
+      <a [href]="link" mat-button>{{ viewerCount + ' ' + (viewerCount > 1 ? 'viewers' : 'viewer') }}</a>
+    </div>
   </mat-card-content>
-  <!-- <mat-card-actions>
-    <a [href]="link" mat-button>LINK</a>
-  </mat-card-actions> -->
 </mat-card>
