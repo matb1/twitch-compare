@@ -19,11 +19,18 @@ describe('GameStatsCardsComponent', () => {
 
   describe('gameMetadataList', () => {
 
-    it('contains three entries.', () => {
+    it('contains no entries at first.', () => {
+      expect(component.gameMetadataList.length).toEqual(0);
+    });
+
+
+    it('contains three entries after the first notification.', () => {
+      mockStatsService.subject.next([]);
       expect(component.gameMetadataList.length).toEqual(3);
     });
 
     it('contains a first entry for Rainbow Six.', () => {
+      mockStatsService.subject.next([]);
       expect(component.gameMetadataList[0].title).toEqual(`Tom Clancy's Rainbow Six: Siege`);
       expect(component.gameMetadataList[0].subtitle).toEqual('Ubisoft');
       expect(component.gameMetadataList[0].link).toEqual(`https://www.twitch.tv/directory/game/Tom%20Clancy's%20Rainbow%20Six%3A%20Siege`);
@@ -44,6 +51,7 @@ describe('GameStatsCardsComponent', () => {
     );
 
     it('contains a second entry for Far Cry 5.', () => {
+      mockStatsService.subject.next([]);
       expect(component.gameMetadataList[1].title).toEqual('Far Cry 5');
       expect(component.gameMetadataList[1].subtitle).toEqual('Ubisoft');
       expect(component.gameMetadataList[1].link).toEqual(`https://www.twitch.tv/directory/game/Far%20Cry%205`);
@@ -64,6 +72,7 @@ describe('GameStatsCardsComponent', () => {
     );
 
     it('contains a third entry for Assassin\'s Creed Odyssey.', () => {
+      mockStatsService.subject.next([]);
       expect(component.gameMetadataList[2].title).toEqual(`Assassin's Creed Odyssey`);
       expect(component.gameMetadataList[2].subtitle).toEqual('Ubisoft');
       expect(component.gameMetadataList[2].link).toEqual(`https://www.twitch.tv/directory/game/Assassin's%20Creed%20Odyssey`);

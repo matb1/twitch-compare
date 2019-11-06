@@ -32,6 +32,10 @@ export class GameStatsCardsComponent implements OnInit, OnDestroy {
   }
 
   private process(statsList: GameStats[]): void {
+    if (!statsList) {
+      return;
+    }
+
     this.gameMetadataList = [];
 
     const gameIds = [GameId.RainbowSixSiege, GameId.FarCry5, GameId.AssassinsCreedOdyssey];

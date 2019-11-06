@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameStatsCardsComponent } from './../game-stats/game-stats-cards.component';
@@ -11,12 +10,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SocketIoModule } from 'ngx-socket-io';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GameStatsChartComponent } from 'src/game-stats/game-stats-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameStatsCardsComponent,
-    GameStatsCardComponent
+    GameStatsCardComponent,
+    GameStatsChartComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { SocketIoModule } from 'ngx-socket-io';
     MatCardModule,
     MatButtonModule,
     MatGridListModule,
-    SocketIoModule.forRoot({ url: '' })
+    SocketIoModule.forRoot({ url: '' }),
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

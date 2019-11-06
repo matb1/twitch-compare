@@ -9,7 +9,7 @@ export class GameStatsService {
   private subject: BehaviorSubject<GameStats[]>;
 
   constructor(socket: Socket) {
-    this.subject = new BehaviorSubject<GameStats[]>([]);
+    this.subject = new BehaviorSubject<GameStats[]>(undefined);
 
     socket.on('/twitch/stats', (stats: GameStats[]) => {
       this.subject.next(stats);
