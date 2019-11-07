@@ -4,7 +4,7 @@
   "description": "Compares number of viewers for Twitch streams in real-time.",
   "scripts": {
     "start": "node dist/index.js",
-    "clean": "rm -rf dist/*",
+    "clean": "rimraf dist/*",
     "build": "npm run clean && tslint -p tsconfig.json -t verbose && tsc",
     "test": "node dist/unit-test-launcher.js",
     "build_test": "npm run --silent build && npm run --silent test"
@@ -34,6 +34,7 @@
     "@types/socket.io": "^2.1.4",
     "jasmine": "^3.5.0",
     "jasmine-core": "^3.5.0",
+    "rimraf": "^3.0.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"
   }
