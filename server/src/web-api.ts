@@ -33,7 +33,10 @@ export class WebApi {
 
     // Handle GET /twitch/stats
     app.get('/twitch/stats', (req, res) => {
-      this.gameStatsProvider.get(['497078', '506274', '460630']).then((stats: GameStats[]) => {
+      // If one or more game IDs are provided, we query the stats for these games,
+      // else we query the stats for the three Ubisoft games
+      const gameIds = typeof(req.query.gameId) === 'string' ? [req.query.gameId] : req.query.gameId;
+      this.gameStatsProvider.get(gameIds || ['497078', '506274', '460630']).then((stats: GameStats[]) => {
         res.json(stats);
       }).catch(() => {
         res.status(500).json({ error: 'Failed to fetch the game stats' });
