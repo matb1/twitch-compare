@@ -43,16 +43,16 @@ describe('GameStatsChartComponent', () => {
 
       (stats: GameStats[], expectedViewerCount: number) => {
         mockStatsService.subject.next(stats);
-        assertRangeInResults(component.results[0], 0, 29, expectedViewerCount); // The first notification sets the entire range of values
+        assertRangeInResults(component.results[0], 0, 59, expectedViewerCount); // The first notification sets the entire range of values
       }
     );
 
     it('Rainbow Six\'s subsequent results are updated by adding an entry at the end and flushing the first entry.', () => {
       runSomeNotifications('460630', [7, 8, 9]);
 
-      assertRangeInResults(component.results[0], 0, 27, 7); // The first 28 entries are '7's
-      assertRangeInResults(component.results[0], 28, 28, 8); // The last two entries are '8'
-      assertRangeInResults(component.results[0], 29, 29, 9); // and '9'
+      assertRangeInResults(component.results[0], 0, 57, 7); // The first 57 entries are '7's
+      assertRangeInResults(component.results[0], 58, 58, 8); // The last two entries are '8'
+      assertRangeInResults(component.results[0], 59, 59, 9); // and '9'
     });
 
     it('contains a second entry for Far Cry 5.', () => {
@@ -69,16 +69,16 @@ describe('GameStatsChartComponent', () => {
 
       (stats: GameStats[], expectedViewerCount: number) => {
         mockStatsService.subject.next(stats);
-        assertRangeInResults(component.results[1], 0, 29, expectedViewerCount); // The first notification sets the entire range of values
+        assertRangeInResults(component.results[1], 0, 59, expectedViewerCount); // The first notification sets the entire range of values
       }
     );
 
     it('Far Cry 5\'s subsequent results are updated by adding an entry at the end and flushing the first entry.', () => {
       runSomeNotifications('497078', [7, 8, 9]);
 
-      assertRangeInResults(component.results[1], 0, 27, 7); // The first 28 entries are '7's
-      assertRangeInResults(component.results[1], 28, 28, 8); // The last two entries are '8'
-      assertRangeInResults(component.results[1], 29, 29, 9); // and '9'
+      assertRangeInResults(component.results[1], 0, 57, 7); // The first 57 entries are '7's
+      assertRangeInResults(component.results[1], 58, 58, 8); // The last two entries are '8'
+      assertRangeInResults(component.results[1], 59, 59, 9); // and '9'
     });
 
     it('contains a third entry for Assassin\'s Creed Odyssey.', () => {
@@ -95,16 +95,16 @@ describe('GameStatsChartComponent', () => {
 
       (stats: GameStats[], expectedViewerCount: number) => {
         mockStatsService.subject.next(stats);
-        assertRangeInResults(component.results[2], 0, 29, expectedViewerCount); // The first notification sets the entire range of values
+        assertRangeInResults(component.results[2], 0, 59, expectedViewerCount); // The first notification sets the entire range of values
       }
     );
 
     it('Assassin\'s Creed Odyssey\'s subsequent results are updated by adding an entry at the end and flushing the first entry.', () => {
       runSomeNotifications('506274', [7, 8, 9]);
 
-      assertRangeInResults(component.results[2], 0, 27, 7); // The first 28 entries are '7's
-      assertRangeInResults(component.results[2], 28, 28, 8); // The last two entries are '8'
-      assertRangeInResults(component.results[2], 29, 29, 9); // and '9'
+      assertRangeInResults(component.results[2], 0, 57, 7); // The first 57 entries are '7's
+      assertRangeInResults(component.results[2], 58, 58, 8); // The last two entries are '8'
+      assertRangeInResults(component.results[2], 59, 59, 9); // and '9'
     });
   });
 
@@ -113,7 +113,7 @@ describe('GameStatsChartComponent', () => {
     rit(
       'returns true only after the first time it is notified with real data.',
 
-      [undefined,                                false],
+      [undefined,                                undefined],
       [[],                                       true],
       [[{ gameId: '506274', viewerCount: 756 }], true],
 

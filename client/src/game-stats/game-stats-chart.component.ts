@@ -25,7 +25,7 @@ export class GameStatsChartComponent implements OnInit, OnDestroy {
   public view: [number, number] = [800, 500];
   public scheme: string = 'cool';
   public gradient: boolean = false;
-  public animations: boolean = true;
+  public animations: boolean = false;
   public xAxis: boolean = true;
   public yAxis: boolean = true;
   public xAxisTicks: number[] = this.createXAxisTicks();
@@ -35,13 +35,9 @@ export class GameStatsChartComponent implements OnInit, OnDestroy {
   public showXAxisLabel: boolean = false;
   public showYAxisLabel: boolean = false;
 
-  private resultsMap: Map<string, number[]> = new Map<string, number[]>([
-    [GameId.RainbowSixSiege, []],
-    [GameId.FarCry5, []],
-    [GameId.AssassinsCreedOdyssey, []],
-  ]);
+  private resultsMap: Map<string, number[]> = new Map<string, number[]>();
   private subscription: Subscription;
-  private readonly maxTicks: number = 30;
+  private readonly maxTicks: number = 60;
 
   constructor(private gameStatsService: GameStatsService) {
   }
@@ -55,7 +51,8 @@ export class GameStatsChartComponent implements OnInit, OnDestroy {
   }
 
   public get showChart(): boolean {
-    return this.resultsMap.get(GameId.RainbowSixSiege).length > 0;
+    const results = this.resultsMap.get(GameId.RainbowSixSiege);
+    return results && results.length > 0;
   }
 
   private process(statsList: GameStats[]): void {
@@ -68,7 +65,12 @@ export class GameStatsChartComponent implements OnInit, OnDestroy {
 
     for (const gameId of gameIds) {
       const stats = statsList.find((s) => s.gameId === gameId);
-      const values = this.resultsMap.get(gameId);
+      let values = this.resultsMap.get(gameId);
+
+      if (!values) {
+        values = [];
+        this.resultsMap.set(gameId, values);
+      }
 
       const value = stats ? stats.viewerCount : 0;
 
