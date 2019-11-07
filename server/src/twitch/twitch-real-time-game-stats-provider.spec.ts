@@ -17,18 +17,18 @@ describe('The TwitchRealTimeGameStatsProvider', () => {
     mockGameStatsProvider.getReturnValue = [];
     mockTimer = new TimerMock();
     mockTimerFactory = new TimerFactoryMock();
-    mockTimerFactory.periodicReturnValue = mockTimer;
+    mockTimerFactory.pollingReturnValue = mockTimer;
 
     provider = new TwitchRealTimeGameStatsProvider(mockGameStatsProvider, mockTimerFactory);
   });
 
   describe('on a call to start()', () => {
 
-    it('starts a periodic timer configured to periods of 4 seconds.', () => {
+    it('starts a polling timer configured to periods of 1 seconds.', () => {
       runStart();
 
       expect(mockTimer.startCallCount).toEqual(1);
-      expect(mockTimer.startRecordedParameter.timeout).toEqual(4000);
+      expect(mockTimer.startRecordedParameter.timeout).toEqual(1000);
     });
 
     it('does nothing when already started.', () => {
@@ -38,15 +38,8 @@ describe('The TwitchRealTimeGameStatsProvider', () => {
       expect(mockTimer.startCallCount).toEqual(1);
     });
 
-    it('fetches a first set of stats right away.', () => {
-      runStart();
-
-      expect(mockGameStatsProvider.getCallCount).toEqual(1);
-      expect(mockGameStatsProvider.getRecordedParameter.gameIds).toEqual(['497078', '506274', '460630']);
-    });
-
     arit(
-      'calls the callback with the fetched first set of stats.',
+      'calls the callback with the fetched set of stats.',
 
       [[{ gameId: 'a', viewerCount: 12}]],
       [[{ gameId: 'b', viewerCount: 13}, { gameId: 'c', viewerCount: 14}]],
@@ -58,6 +51,8 @@ describe('The TwitchRealTimeGameStatsProvider', () => {
           expect(actual).toEqual(expected);
           done();
         });
+
+        mockTimer.startRecordedParameter.callback();
       }
     );
 
@@ -67,7 +62,7 @@ describe('The TwitchRealTimeGameStatsProvider', () => {
       mockTimer.startRecordedParameter.callback();
       mockTimer.startRecordedParameter.callback();
 
-      expect(mockGameStatsProvider.getCallCount).toEqual(4);
+      expect(mockGameStatsProvider.getCallCount).toEqual(3);
       expect(mockGameStatsProvider.getRecordedParameter.gameIds).toEqual(['497078', '506274', '460630']);
     });
 
@@ -92,6 +87,7 @@ describe('The TwitchRealTimeGameStatsProvider', () => {
         provider.start(() => {
           actualCallCount++;
         });
+        mockTimer.startRecordedParameter.callback();
 
         setImmediate(() => {
           mockTimer.startRecordedParameter.callback();

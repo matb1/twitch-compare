@@ -9,6 +9,7 @@ const server: http.Server = http.createServer(app);
 const webApi: WebApi = container.get<WebApi>(WebApiToken);
 webApi.installRoutes(server, app);
 
-server.listen(8080, () => {
-  console.log('Listening on port 8080.');
+const port = process.env.SERVER_PORT || 8080;
+server.listen(port, () => {
+  console.log(`Listening on port ${port}.`);
 });

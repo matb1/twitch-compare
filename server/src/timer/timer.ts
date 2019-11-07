@@ -1,4 +1,4 @@
 export interface Timer {
-  start(timeout: number, callback: () => void): Timer;
+  start(timeout: number, callback: () => void|Promise<void>): Timer;
   stop(): Timer;
 }
