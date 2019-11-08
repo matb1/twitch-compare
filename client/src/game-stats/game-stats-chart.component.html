@@ -1,16 +1,19 @@
-<div class="container">
-  <ngx-charts-line-chart *ngIf="showChart"
-    [results]="results"
-    [scheme]="scheme"
-    [gradient]="gradient"
-    [animations]="animations"
-    [xAxis]="xAxis"
-    [yAxis]="yAxis"
-    [xAxisTicks]="xAxisTicks"
-    [legend]="legend"
-    [legendTitle]="legendTitle"
-    [legendPosition]="legendPosition"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel">
-  </ngx-charts-line-chart>
-</div>
+
+<mat-card class="card" *ngIf="showChart">
+  <mat-card-content class="card-content">
+    <ngx-charts-line-chart
+      [results]="results"
+      [scheme]="scheme"
+      [gradient]="gradient"
+      [animations]="animations"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [xAxisTicks]="xAxisTicks"
+      [legend]="legend"
+      [legendTitle]="legendTitle"
+      [legendPosition]="legendPosition"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel">
+    </ngx-charts-line-chart>
+  </mat-card-content>
+</mat-card>

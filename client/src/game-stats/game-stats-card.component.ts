@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-stats-card',
-  templateUrl: './game-stats-card.component.html'
+  templateUrl: './game-stats-card.component.html',
+  styleUrls: ['./game-stats-card.component.scss']
 })
 export class GameStatsCardComponent {
   @Input() public title: string;
