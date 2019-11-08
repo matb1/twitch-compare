@@ -31,7 +31,7 @@ export class TwitchGameStatsProvider implements GameStatsProvider {
       }
     };
 
-    return this.fetchStats(url, options);
+    return this.fetchStats(url, options).catch(() => []);
   }
 
   private async fetchStats(url: string, options: HttpOptions, cursor?: string, map?: Map<string, GameStats>): Promise<GameStats[]> {

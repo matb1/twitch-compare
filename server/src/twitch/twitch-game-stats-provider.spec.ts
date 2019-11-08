@@ -73,7 +73,7 @@ describe('The TwitchGameStatsProvider', () => {
     });
 
     arit(
-      'rejects the promise if the HTTP response status code is not 200.',
+      'returns an empty array if the HTTP response status code is not 200.',
 
       [400],
       [500],
@@ -81,9 +81,8 @@ describe('The TwitchGameStatsProvider', () => {
       (status: number, done: DoneFn) => {
         setupHttpResponse(status);
 
-        runGet().then(() => {
-          done.fail('This promise should be rejected.');
-        }, () => {
+        runGet().then((stats) => {
+          expect(stats).toEqual([]);
           done();
         });
       }
