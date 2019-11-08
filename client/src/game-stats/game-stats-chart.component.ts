@@ -22,7 +22,6 @@ export class GameStatsChartComponent implements OnInit, OnDestroy {
 
   // ngx-charts options as defined here: https://swimlane.gitbook.io/ngx-charts/examples/line-area-charts/line-chart#inputs
   public results: ChartData[] = [];
-  public view: [number, number] = [800, 500];
   public scheme: string = 'cool';
   public gradient: boolean = false;
   public animations: boolean = false;

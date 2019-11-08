@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameStatsCardsComponent } from './../game-stats/game-stats-cards.component';
 import { GameStatsCardComponent } from './../game-stats/game-stats-card.component';
@@ -22,7 +21,6 @@ import { GameStatsChartComponent } from 'src/game-stats/game-stats-chart.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     NoopAnimationsModule,
     MatToolbarModule,
     MatCardModule,
