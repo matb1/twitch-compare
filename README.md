@@ -22,35 +22,35 @@ Web dashboard for comparing the viewer count of Twitch games in real-time.
 
 # Development
 
-Development for **twitch-compare** is made easy by using a Dockerized development environment. By using the [Visual Studio Code](https://code.visualstudio.com/) editor and the *Remote - Containers* extension (`ms-vscode-remote.remote-containers`), it is easy to get started with development. Simply open the editor and you should be prompted to open the workspace in a Docker container already set up with node.js and the Angular CLI. For more information, see the `Dockerfile` and `devcontainer.json` files under `/.devcontainer`. You can also read the Visual Studio Code documentation on [developing inside a container](https://code.visualstudio.com/docs/remote/containers).
+Development for **twitch-compare** is simplified by using a Dockerized development environment. By using the [Visual Studio Code](https://code.visualstudio.com/) editor and the *Remote - Containers* extension (`ms-vscode-remote.remote-containers`), it is easy to get started with development. Simply open the editor and you should be prompted to open the workspace in a Docker container already set up with node.js and the Angular CLI. For more information, see the `Dockerfile` and `devcontainer.json` files under `/.devcontainer`. You can also read the Visual Studio Code documentation on [developing inside a container](https://code.visualstudio.com/docs/remote/containers).
 > Development is still possible without using the dev container, by installing node.js and the Angular CLI on your development PC.
 
 **twitch-compare** has two parts: a web server (under `/server`) and a web UI (under `/client`). Before running **twitch-compare** you need to build both parts.
 
 ## Building and testing the client
-`cd client`
+1. `cd client`
 
-`npm i`
+2. `npm i`
 
-`npm run build`
+3. `npm run build`
 
-`npm run test`
+4. `npm run test`
 
 ## Building and testing the server
-`cd server`
+1. `cd server`
 
-`npm i`
+2. `npm i`
 
-`npm run build`
+3. `npm run build`
 
-`npm run test`
+4. `npm run test`
 
 ## Running twitch-compare
 After both the client and server are built, you can run **twitch-compare** with the following commands:
 
-`cd server`
+1. `cd server`
 
-`npm run start`
+2. `npm run start`
 
 > **IMPORTANT** You need to set the `TWITCH_CLIENT_ID` environment variable with your Twitch developer client ID. Failure to do so will prevent the server from making successful calls to the [Twitch API](https://dev.twitch.tv/docs/api).
 
@@ -65,4 +65,4 @@ You can then instantiate a new container from this image with the `docker run` c
 
 `docker run -e TWITCH_CLIENT_ID=mytwitchclientid -p 8080:8080 twitch-compare`
 
-> These commands need to be run outside of the dev container.
+> These commands need to run outside of the dev container.
