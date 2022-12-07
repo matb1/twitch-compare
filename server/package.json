@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/matb1/twitch-compare#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "inversify": "^5.0.1",
     "needle": "^2.4.0",
     "reflect-metadata": "^0.1.13",
